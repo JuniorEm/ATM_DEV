@@ -9,6 +9,8 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<deltaspike.version>1.7.1</deltaspike.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<dependencyManagement>
@@ -132,5 +134,14 @@
 	</dependencies>
 	<build>
 		<finalName>ATM_DEV</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>    
+        </plugins>
 	</build>
 </project>

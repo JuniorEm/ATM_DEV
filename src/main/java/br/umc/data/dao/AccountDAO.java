@@ -7,5 +7,6 @@ import br.umc.data.entity.Account;
 
 @Repository
 public interface AccountDAO extends EntityRepository<Account, Long> {
-
+	
+	Account findByAccountNumberAndPinNumber(final String accountNumber, final String pinNumber);
 }

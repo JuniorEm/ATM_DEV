@@ -48,6 +48,4 @@ public class Account implements Serializable {
 	public void setPinNumber(String pinNumber) {
 		this.pinNumber = pinNumber;
 	}
-	
-	
 }

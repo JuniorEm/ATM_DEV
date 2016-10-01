@@ -6,11 +6,18 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>INDEX</title>
+<title>Login</title>
 </h:head>
 <h:body>
-	<h:outputText value="Entered" />
-	<br/>
-	<h:outputText value="#{accountLoggedBean.message}"/>
+
+	<h:form>
+		<h:panelGrid>
+			<p:outputLabel value="Número da Conta: " />
+			<p:inputText value="#{loginBean.account.accountNumber}"/>
+			<p:outputLabel value="Número do Pin: " />
+			<p:inputText value="#{loginBean.account.pinNumber}"/>
+			<p:commandButton value="Clicar" action="#{loginBean.login()}"/>
+		</h:panelGrid>
+	</h:form>
 </h:body>
 </html>
