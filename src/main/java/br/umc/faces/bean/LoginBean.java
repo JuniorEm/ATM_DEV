@@ -7,46 +7,45 @@ import javax.inject.Named;
 
 import br.umc.data.dao.AccountDAO;
 import br.umc.data.entity.Account;
-import br.umc.faces.page.Page;
+import static br.umc.faces.page.Page.INDEX;
 
 @Named
 @RequestScoped
 public class LoginBean {
-	
-	private Page page;
-	@Inject private AccountDAO dao;
-	@Inject private AccountLoggedBean bean;
+
+	@Inject
+	private AccountDAO dao;
+	@Inject
+	private AccountLoggedBean bean;
 	private Account account;
-	
-	
+
 	@PostConstruct
 	public void init() {
 		account = new Account();
 	}
-	
-	public Account getAccount() {
-		return account;
-	}
-	
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-	
-	public Account getAccountData() {
+
+	private Account getAccountFound() {
 		final Account found = dao.findByAccountNumberAndPinNumber(account.getAccountNumber(), account.getPinNumber());
-		
+
 		if (found == null) {
 			return null;
 		}
-		
+
 		bean.register("S");
 		return found;
 	}
-	
+
 	public String login() {
-		if (getAccountData() == null)
+		if (getAccountFound() == null)
 			return null;
-		return Page.INDEX.getURL().concat("?faces-redirect=true");
+		return INDEX.getURL().concat("?faces-redirect=true");
 	}
-	
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 }

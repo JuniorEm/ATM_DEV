@@ -1,5 +1,10 @@
 br\umc\data\entity\Account_.class
-br\umc\faces\bean\AccountBean.class
 br\umc\data\dao\AccountDAO.class
 br\umc\data\entity\Account.class
+br\umc\faces\listener\LoginPhaseListener.class
+br\umc\faces\bean\LoginBean.class
+br\umc\qualifier\AccountLogged.class
 br\umc\data\EntityManagerProducer.class
+br\umc\faces\page\Page.class
+br\umc\faces\bean\AccountLoggedBean.class
+br\umc\qualifier\Bean.class

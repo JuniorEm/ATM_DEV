@@ -1,4 +1,9 @@
+C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\qualifier\AccountLogged.java
+C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\qualifier\Bean.java
+C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\faces\bean\LoginBean.java
+C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\faces\listener\LoginPhaseListener.java
 C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\data\dao\AccountDAO.java
 C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\data\entity\Account.java
 C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\data\EntityManagerProducer.java
-C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\faces\bean\AccountBean.java
+C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\faces\bean\AccountLoggedBean.java
+C:\Users\Junior\git\ATM_DEV\src\main\java\br\umc\faces\page\Page.java

@@ -5,12 +5,18 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>INDEX</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>INDEX</title>
 </h:head>
 <h:body>
-	<h:outputText value="Entered" />
-	<br/>
-	<h:outputText value="#{accountLoggedBean.message}"/>
+	<h:form>
+		<p:menu>
+			<p:submenu label="#{language['label.submenu']}">
+				<p:menuitem value="#{language['label.submenu.consult']}" />
+				<p:menuitem value="#{language['label.submenu.withdraw']}" />
+				<p:menuitem value="#{language['label.submenu.deposit']}" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
 </h:body>
 </html>

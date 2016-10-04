@@ -10,6 +10,7 @@ import javax.inject.Named;
 import br.umc.data.entity.Account;
 import br.umc.qualifier.AccountLogged;
 
+@SuppressWarnings("serial")
 @Named
 @SessionScoped
 public class AccountLoggedBean implements Serializable {

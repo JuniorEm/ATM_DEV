@@ -5,19 +5,31 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Login</title>
 </h:head>
 <h:body>
 
-	<h:form>
-		<h:panelGrid>
-			<p:outputLabel value="Número da Conta: " />
-			<p:inputText value="#{loginBean.account.accountNumber}"/>
-			<p:outputLabel value="Número do Pin: " />
-			<p:inputText value="#{loginBean.account.pinNumber}"/>
-			<p:commandButton value="Clicar" action="#{loginBean.login()}"/>
-		</h:panelGrid>
-	</h:form>
+		<p:outputLabel value="Tela de Login" style="font-size: 2.5em; margin-left: 42.5%" />
+	
+	<div class="ui-g">
+		<br />
+		<div class="ui-g-6 ui-md-3"
+			style="margin-left: 38.5%; margin-top: 15%">
+			<h:form>
+				<h:panelGrid>
+					<p:inputText placeholder="#{language['label.an']}"
+						value="#{loginBean.account.accountNumber}" style="width: 150%" />
+					<p:password placeholder="#{language['label.pin']}"
+						value="#{loginBean.account.pinNumber}" style="width: 150%" />
+					<br />
+					<p:commandButton value="Login" action="#{loginBean.login()}"
+						style="width: 55%; height: 150%; 
+					margin-left: 46.5%" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
+
 </h:body>
 </html>
