@@ -7,12 +7,19 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>INDEX</title>
+	<title>Consult</title>
 </h:head>
 <h:body>
-	<ui:include src="template.xhtml"/>
-	<br/>
-	<h:form id="index_form">
-	</h:form>
+	<div style="width: 940px">
+		<div style="width: 60px">
+			<ui:include src="template.xhtml" />
+		</div>
+		<div style="width: 60px">
+			<h:panelGrid
+				style="position:relative; margin-left: 550px; margin-top: -100px; width: 300px">
+				<p:outputLabel value="Saldo: #{accountLoggedBean.account.balance}" style="font-size: 2.5em"/>
+			</h:panelGrid>
+		</div>
+	</div>
 </h:body>
 </html>

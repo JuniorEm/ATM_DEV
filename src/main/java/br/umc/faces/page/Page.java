@@ -1,7 +1,11 @@
 package br.umc.faces.page;
 
 public enum Page {
-	LOGIN("login.xhtml"), INDEX("index.xhtml");
+	LOGIN("login.xhtml"), 
+	INDEX("index.xhtml"), 
+	CONSULT("consult.xhtml"), 
+	WITHDRAW("withdraw.xhtml"),
+	DEPOSIT("deposit.xhtml");
 	
 	private final String URL;
 	

@@ -59,6 +59,8 @@ public class Account implements Serializable {
 	}
 	
 	public BigDecimal getBalance() {
+		if (balance == null)
+			balance = new BigDecimal("0.00");
 		return balance;
 	}
 	

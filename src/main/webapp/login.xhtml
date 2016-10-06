@@ -10,23 +10,35 @@
 </h:head>
 <h:body>
 
-		<p:outputLabel value="Tela de Login" style="font-size: 2.5em; margin-left: 42.5%" />
-	
+	<p:outputLabel value="Tela de Login"
+		style="font-size: 2.5em; margin-left: 42.5%" />
+
 	<div class="ui-g">
 		<br />
 		<div class="ui-g-6 ui-md-3"
 			style="margin-left: 38.5%; margin-top: 15%">
 			<h:form>
+				<p:tooltip/>
+				<p:messages autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
 				<h:panelGrid>
-					<p:inputText placeholder="#{language['label.an']}"
-						value="#{loginBean.account.accountNumber}" style="width: 150%" />
-					<p:password placeholder="#{language['label.pin']}"
-						value="#{loginBean.account.pinNumber}" style="width: 150%" />
-					<br />
+					<p:inputMask id="account_number" placeholder="#{language['label.an']}"
+						value="#{loginBean.account.accountNumber}" style="width: 150%"
+						mask="9999/9999999-9" required="true"
+						requiredMessage="O campo número da conta precisa de preenchimento"
+						/>
+					<p:message for="account_number" display="tooltip"/>
+					<p:password id="password_field"
+						placeholder="#{language['label.pin']}"
+						value="#{loginBean.account.pinNumber}" style="width: 150%"
+						required="true"
+						requiredMessage="O campo pin precisa de preenchimento"/>
+						<p:message for="password_field" display="tooltip"/>
+					<br/>
+				</h:panelGrid>
 					<p:commandButton value="Login" action="#{loginBean.login()}"
 						style="width: 55%; height: 150%; 
-					margin-left: 46.5%" />
-				</h:panelGrid>
+					    margin-left: auto; margin-right: auto;
+					    margin-top: auto; margin-bottom: auto" update="@form"/>
 			</h:form>
 		</div>
 	</div>
