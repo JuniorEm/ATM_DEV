@@ -15,6 +15,7 @@ import br.umc.data.dao.AccountDAO;
 import br.umc.data.entity.Account;
 import br.umc.faces.exception.BusinessException;
 import br.umc.faces.util.FacesUtil;
+import br.umc.faces.util.MessagesUtil;
 
 @Named
 @RequestScoped
@@ -30,23 +31,23 @@ public class LoginBean {
 	}
 
 	private void getAccountFound() throws BusinessException {
-		final Optional<Account> optionalFound = Optional.ofNullable(dao.findByAccountNumberAndPinNumber(
-				account.getAccountNumber().replace("/", "").replace("-", ""), account.getPinNumber()));
+		final Optional<Account> optionalFound = Optional
+				.ofNullable(dao.findByAccountNumberAndPinNumber(account.getAccountNumber().replace("/", "").replace("-", ""), 
+						account.getPinNumber()));
+		
 		final Account found = optionalFound.orElseThrow(() -> new BusinessException("Usuário/Senha inválidos"));
 		bean.register(found);
 	}
-
-	public String login() {
+	
+	public void login() {
 		try {
 			getAccountFound();
-			return INDEX.getURL().concat("?faces-redirect=true");
-		} catch(final BusinessException e) {
-			FacesUtil.getFacesContext().addMessage(null, FacesUtil
-						.getFacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", e.getMessage()));
+			FacesUtil.redirect(INDEX.getURL());
+		} catch (BusinessException e) {
+			MessagesUtil.displayErrorMessage("Error", "Usuário/Senha inválidos");
 		}
-		return LOGIN.getURL().concat("?faces-redirect=true");
 	}
-
+	
 	public Account getAccount() {
 		return account;
 	}

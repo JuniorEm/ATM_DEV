@@ -1,21 +1,31 @@
 package br.umc.faces.util;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
+import java.io.IOException;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 public final class FacesUtil {
-	
-	public static final FacesContext getFacesContext() {
+
+	public static FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
 	}
-	
-	public static final ExternalContext getExternalContext() {
+
+	public static ExternalContext getExternalContext() {
 		return getFacesContext().getExternalContext();
 	}
-	
-	public static final FacesMessage getFacesMessage(final Severity severity, final String summary, final String body) {
-		return new FacesMessage(severity, summary, body);
+
+	public static void redirect(final String page) {
+		try {
+			final ExternalContext externalContext = getExternalContext();
+			externalContext.redirect(page);
+		} catch (final IOException e) {
+			MessagesUtil.displayErrorMessage("Error", e.getMessage());
+		}
 	}
+
+	public static void invalidateSession() {
+		getExternalContext().invalidateSession();
+	}
+
 }

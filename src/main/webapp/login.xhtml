@@ -18,27 +18,36 @@
 		<div class="ui-g-6 ui-md-3"
 			style="margin-left: 38.5%; margin-top: 15%">
 			<h:form>
-				<p:tooltip/>
-				<p:messages autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
-				<h:panelGrid>
-					<p:inputMask id="account_number" placeholder="#{language['label.an']}"
-						value="#{loginBean.account.accountNumber}" style="width: 150%"
-						mask="9999/9999999-9" required="true"
-						requiredMessage="O campo número da conta precisa de preenchimento"
-						/>
-					<p:message for="account_number" display="tooltip"/>
-					<p:password id="password_field"
-						placeholder="#{language['label.pin']}"
-						value="#{loginBean.account.pinNumber}" style="width: 150%"
-						required="true"
-						requiredMessage="O campo pin precisa de preenchimento"/>
-						<p:message for="password_field" display="tooltip"/>
-					<br/>
-				</h:panelGrid>
-					<p:commandButton value="Login" action="#{loginBean.login()}"
-						style="width: 55%; height: 150%; 
+				<p:tooltip />
+				<p:messages autoUpdate="true" showDetail="true" globalOnly="true"
+					closable="true" />
+				<h:panelGrid columns="1">
+					<p:panel header="Login">
+						<p:inputMask id="account_number"
+							placeholder="#{language['label.an']}"
+							value="#{loginBean.account.accountNumber}" mask="9999/9999999-9"
+							required="true"
+							requiredMessage="O campo número da conta precisa de preenchimento" />
+						<p:message for="account_number" display="tooltip" />
+						<p:password id="password_field"
+							placeholder="#{language['label.pin']}" style="margin-top: 10px"
+							value="#{loginBean.account.pinNumber}" required="true"
+							requiredMessage="O campo pin precisa de preenchimento" />
+						<p:message for="password_field" display="tooltip" />
+						<br/>
+						<p:commandButton value="Login" action="#{loginBean.login()}"
+							style="
 					    margin-left: auto; margin-right: auto;
-					    margin-top: auto; margin-bottom: auto" update="@form"/>
+					    margin-top: 10px; margin-bottom: auto"
+							update="@form" />
+
+					</p:panel>
+				</h:panelGrid>
+
+
+
+
+
 			</h:form>
 		</div>
 	</div>

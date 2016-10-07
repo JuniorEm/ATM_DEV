@@ -1,16 +1,13 @@
 package br.umc.faces.bean;
 
-import static br.umc.faces.page.Page.LOGIN;
 import static br.umc.faces.page.Page.CONSULT;
+import static br.umc.faces.page.Page.LOGIN;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -47,13 +44,12 @@ public class AccountLoggedBean implements Serializable {
 	}
 
 	public void logout() {
-		final ExternalContext externalContext = FacesUtil.getExternalContext();
-		externalContext.invalidateSession();
-		redirect(LOGIN.getURL());
+		FacesUtil.invalidateSession();
+		FacesUtil.redirect(LOGIN.getURL());
 	}
 
 	public void redirectToConsult() {
-		redirect(CONSULT.getURL());
+		FacesUtil.redirect(CONSULT.getURL());
 	}
 
 	public Account getAccount() {
@@ -64,13 +60,5 @@ public class AccountLoggedBean implements Serializable {
 		this.account = account;
 	}
 
-	private void redirect(final String page) {
-		try {
-			final ExternalContext externalContext = FacesUtil.getExternalContext();
-			externalContext.redirect(page);
-		} catch (IOException e) {
-			FacesUtil.getFacesContext().addMessage(null,
-					FacesUtil.getFacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-		}
-	}
+
 }

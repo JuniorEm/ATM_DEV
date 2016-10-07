@@ -9,15 +9,18 @@
 </h:head>
 <h:body>
 	<h:form id="menu_form">
-		<p:menu>
-			<p:submenu label="#{language['label.submenu']}">
-				<p:menuitem value="#{language['label.submenu.consult']}" action="#{accountLoggedBean.redirectToConsult}"/>
-				<p:menuitem value="#{language['label.submenu.withdraw']}"/>
-				<p:menuitem value="#{language['label.submenu.deposit']}"/>
-				<p:menuitem value="#{language['label.submenu.logout']}"
-							action="#{accountLoggedBean.logout}"/>
-			</p:submenu>
-		</p:menu>
+		<h:panelGrid>
+			<p:menu>
+				<p:submenu label="#{language['label.submenu']}">
+					<p:menuitem value="#{language['label.submenu.consult']}"
+						action="#{accountLoggedBean.redirectToConsult}" />
+					<p:menuitem value="#{language['label.submenu.withdraw']}" />
+					<p:menuitem value="#{language['label.submenu.deposit']}" />
+					<p:menuitem value="#{language['label.submenu.logout']}"
+						action="#{accountLoggedBean.logout}" />
+				</p:submenu>
+			</p:menu>
+		</h:panelGrid>
 	</h:form>
 </h:body>
 </html>

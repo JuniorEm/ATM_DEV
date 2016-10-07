@@ -17,8 +17,11 @@
 		<div style="width: 60px">
 			<h:panelGrid
 				style="position:relative; margin-left: 550px; margin-top: -100px; width: 300px">
-				<p:outputLabel value="Saldo: #{accountLoggedBean.account.balance}" style="font-size: 2.5em"/>
+				<p:outputLabel value="#{accountLoggedBean.account.accountNumber}" />
+				<p:outputLabel value="#{accountLoggedBean.account.balance}" />
 			</h:panelGrid>
+
+
 		</div>
 	</div>
 </h:body>
