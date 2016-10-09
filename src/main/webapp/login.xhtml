@@ -25,7 +25,7 @@
 					<p:panel header="Login">
 						<p:inputMask id="account_number"
 							placeholder="#{language['label.an']}"
-							value="#{loginBean.account.accountNumber}" mask="9999/9999999-9"
+							value="#{loginBean.account.accountNumber}" mask="9999/99999-9"
 							required="true"
 							requiredMessage="O campo número da conta precisa de preenchimento" />
 						<p:message for="account_number" display="tooltip" />
@@ -40,7 +40,6 @@
 					    margin-left: auto; margin-right: auto;
 					    margin-top: 10px; margin-bottom: auto"
 							update="@form" />
-
 					</p:panel>
 				</h:panelGrid>
 

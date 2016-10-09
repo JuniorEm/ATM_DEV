@@ -2,6 +2,7 @@ package br.umc.faces.bean;
 
 import static br.umc.faces.page.Page.CONSULT;
 import static br.umc.faces.page.Page.LOGIN;
+import static br.umc.faces.page.Page.WITHDRAW;
 
 import java.io.Serializable;
 
@@ -50,6 +51,10 @@ public class AccountLoggedBean implements Serializable {
 
 	public void redirectToConsult() {
 		FacesUtil.redirect(CONSULT.getURL());
+	}
+	
+	public void redirectToWithdraw() {
+		FacesUtil.redirect(WITHDRAW.getURL());
 	}
 
 	public Account getAccount() {

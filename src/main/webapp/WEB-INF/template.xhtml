@@ -3,18 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>ATM_DEV</title>
 </h:head>
+
 <h:body>
 	<h:form id="menu_form">
 		<h:panelGrid>
 			<p:menu>
 				<p:submenu label="#{language['label.submenu']}">
 					<p:menuitem value="#{language['label.submenu.consult']}"
-						action="#{accountLoggedBean.redirectToConsult}" />
-					<p:menuitem value="#{language['label.submenu.withdraw']}" />
+						action="#{accountLoggedBean.redirectToConsult()}" />
+					<p:menuitem value="#{language['label.submenu.withdraw']}"
+						action="#{accountLoggedBean.redirectToWithdraw()}" />
 					<p:menuitem value="#{language['label.submenu.deposit']}" />
 					<p:menuitem value="#{language['label.submenu.logout']}"
 						action="#{accountLoggedBean.logout}" />
@@ -22,5 +26,8 @@
 			</p:menu>
 		</h:panelGrid>
 	</h:form>
+
+	<ui:insert name="content">
+	</ui:insert>
 </h:body>
 </html>
