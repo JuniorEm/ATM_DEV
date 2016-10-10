@@ -3,6 +3,7 @@ package br.umc.faces.bean;
 import static br.umc.faces.page.Page.CONSULT;
 import static br.umc.faces.page.Page.LOGIN;
 import static br.umc.faces.page.Page.WITHDRAW;
+import static br.umc.faces.page.Page.DEPOSIT;
 
 import java.io.Serializable;
 
@@ -17,12 +18,12 @@ import br.umc.data.entity.Account;
 import br.umc.faces.util.FacesUtil;
 import br.umc.qualifier.AccountLogged;
 
-@SuppressWarnings("serial")
 @Named
 @SessionScoped
+@SuppressWarnings("serial")
 public class AccountLoggedBean implements Serializable {
-	private Account account;
 	@Inject private AccountDAO dao;
+	private Account account;
 	private String logged;
 
 	@PostConstruct
@@ -32,8 +33,7 @@ public class AccountLoggedBean implements Serializable {
 			account = dao.findByAccountNumber(logged);
 	}
 
-	@Produces
-	@AccountLogged
+	@Produces @AccountLogged
 	public String getLogged() {
 		return logged;
 	}
@@ -56,6 +56,10 @@ public class AccountLoggedBean implements Serializable {
 	public void redirectToWithdraw() {
 		FacesUtil.redirect(WITHDRAW.getURL());
 	}
+	
+	public void redirectToDeposit() {
+		FacesUtil.redirect(DEPOSIT.getURL());
+	}
 
 	public Account getAccount() {
 		return account;
@@ -64,6 +68,4 @@ public class AccountLoggedBean implements Serializable {
 	public void setAccount(final Account account) {
 		this.account = account;
 	}
-
-
 }

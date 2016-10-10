@@ -10,9 +10,9 @@ import javax.inject.Named;
 import br.umc.data.entity.Account;
 import br.umc.faces.model.Consult;
 
-@SuppressWarnings("serial")
-@ViewScoped
 @Named
+@ViewScoped
+@SuppressWarnings("serial")
 public class ConsultBean implements Serializable {
 	@Inject private AccountLoggedBean logged;
 	private Consult consult;
@@ -27,10 +27,4 @@ public class ConsultBean implements Serializable {
 	public Consult getConsult() {
 		return consult;
 	}
-	
-	public void setConsult(final Consult consult) {
-		this.consult = consult;
-	}
-	
-	
 }

@@ -7,6 +7,7 @@
 	<persistence-unit name="atmPU">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>br.umc.data.entity.Account</class>
+		<class>br.umc.data.entity.WithdrawValue</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/atm_data" />

@@ -20,7 +20,6 @@ import br.umc.faces.util.MessagesUtil;
 @Named
 @RequestScoped
 public class LoginBean {
-
 	@Inject private AccountDAO dao;
 	@Inject private AccountLoggedBean bean;
 	private Account account;

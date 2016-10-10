@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+		<div style="width: 940px">
+			<div style="width: 60px">
+				<p:panelGrid
+					style="position:relative; margin-left: 550px; margin-top: -100px; width: 350px;">
+					<f:facet name="header">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Depósito" />
+							</p:column>
+						</p:row>
+					</f:facet>
+
+					<p:row>
+						<p:column>
+							<h:form id="internal_form">
+								<div style="margin-top: 10px; margin-left: 30px">
+									<p:outputLabel for="label_deposit" value="Valor: " />
+									<p:inputNumber id="label_deposit" symbol="R$"
+										value="#{depositBean.deposit.value}" decimalSeparator=","
+										thousandSeparator="." />
+								</div>
+								<p:separator />
+								<p:commandButton value="Depositar"
+									action="#{depositBean.deposit()}">
+									<p:confirm header="#{language['label.dialog.deposit.header']}"
+										message="#{language['label.dialog.deposit.message']}"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+							</h:form>
+						</p:column>
+					</p:row>
+
+
+					<p:confirmDialog widgetVar="deposit_confirm" showEffect="fade"
+						hideEffect="fade" global="true">
+						<h:form>
+							<p:commandButton
+								value="#{language['label.dialog.deposit.decision.yes']}"
+								type="button" styleClass="ui-confirmdialog-yes"
+								icon="ui-icon-check" style="margin-left: 50px"
+								update="form_confirm" />
+							<p:commandButton
+								value="#{language['label.dialog.deposit.decision.no']}"
+								type="button" styleClass="ui-confirmdialog-no"
+								icon="ui-icon-close" style="margin-left: 5px" />
+						</h:form>
+					</p:confirmDialog>
+
+					<p:dialog id="dlg_deposit" widgetVar="deposit_confirm"
+						header="Concluído" showEffect="fade" hideEffect="fade"
+						modal="true" closable="false">
+						<h:form>
+							<p:outputLabel value="Depósito realizado com sucesso!" />
+							<p:separator />
+							<p:panel>
+								<p:outputLabel
+									value="Saldo anterior: #{depositBean.deposit.previousBalance}" />
+							</p:panel>
+							<p:commandButton value="Fechar" onclick="PF('dlg_deposit').hide();" resetValues="true"/>
+						</h:form>
+					</p:dialog>
+				</p:panelGrid>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

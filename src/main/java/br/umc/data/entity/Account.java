@@ -16,6 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ACCOUNT")
+@SuppressWarnings("serial")
 public class Account implements Serializable {
 	
 	@Id

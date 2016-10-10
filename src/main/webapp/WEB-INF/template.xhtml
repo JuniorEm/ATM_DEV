@@ -19,7 +19,8 @@
 						action="#{accountLoggedBean.redirectToConsult()}" />
 					<p:menuitem value="#{language['label.submenu.withdraw']}"
 						action="#{accountLoggedBean.redirectToWithdraw()}" />
-					<p:menuitem value="#{language['label.submenu.deposit']}" />
+					<p:menuitem value="#{language['label.submenu.deposit']}" 
+						action="#{accountLoggedBean.redirectToDeposit()}"/>
 					<p:menuitem value="#{language['label.submenu.logout']}"
 						action="#{accountLoggedBean.logout}" />
 				</p:submenu>
@@ -29,5 +30,6 @@
 
 	<ui:insert name="content">
 	</ui:insert>
+
 </h:body>
 </html>

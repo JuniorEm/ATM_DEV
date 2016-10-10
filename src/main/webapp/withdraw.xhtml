@@ -6,53 +6,99 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
 	<ui:define name="content">
+		<h:form>
+			<div style="width: 940px">
+				<div style="width: 60px">
 
-		<div style="width: 940px">
-			<div style="width: 60px">
-				<p:panelGrid
-					style="position:relative; margin-left: 550px; margin-top: -100px; width: 300px">
-					<f:facet name="header">
-						<p:row>
-							<p:column colspan="2">
-								Valores
-							</p:column>
-						</p:row>
-					</f:facet>
-					<p:row>
-						<p:column>
-							<p:button value="R$20,00" style="margin-left: 30px;"/>
-						</p:column>
-						<p:column>
-							<p:button value="R$30,00" style="margin-left: 30px;"/>
-						</p:column>
-					</p:row>
+					<p:dataGrid var="value" value="#{withdrawBean.values}" columns="2"
+						rows="6"
+						style="position:relative; margin-left: 550px; margin-top: -100px; width: 350px">
 
-					<p:row>
-						<p:column>
-							<p:button value="R$40,00" style="margin-left: 30px;" />
-						</p:column>
-						<p:column>
-							<p:button value="R$50,00" style="margin-left: 30px;"/>
-						</p:column>
-					</p:row>
+						<f:facet name="header">
+							<p:row>
+								<p:column colspan="2">
+									<p:outputLabel value="#{language['label.withdraw.values']}" />
+								</p:column>
+							</p:row>
+						</f:facet>
+						<h:panelGrid>
+							<p:row>
+								<p:column>
+									<p:commandButton value="#{value.valueToBeWithdrawn}"
+										style="width: 150px" action="#{withdrawBean.withdraw()}">
+										<f:setPropertyActionListener value="#{value}"
+											target="#{withdrawBean.selected}" />
+										<p:confirm
+											header="#{language['label.dialog.withdraw.header']}"
+											message="#{language['label.dialog.withdraw.message']}"
+											icon="ui-icon-alert" />
+									</p:commandButton>
+								</p:column>
+							</p:row>
+						</h:panelGrid>
+					</p:dataGrid>
 
-					<p:row>
-						<p:column>
-							<p:button value="R$60,00" style="margin-left: 30px;"/>
-						</p:column>
-						<p:column>
-							<p:button value="R$70,00" style="margin-left: 30px;"/>
-						</p:column>
-					</p:row>
-
-					<p:row>
-						<p:column colspan="2">
-							<p:button value="Outros valores" style="margin-left: 50px;" />
-						</p:column>
-					</p:row>
-				</p:panelGrid>
+					<div style="margin-top: 25px">
+						<p:commandButton
+							value="#{language['label.withdraw.other.values']}"
+							style="margin-left: 550px; margin-top: -100px; width: 350px; height: 50px"
+							oncomplete="PF('withdraw_other_values').show()" />
+					</div>
+				</div>
 			</div>
-		</div>
-	</ui:define>
+		</h:form>
 
+		<!-- Decisão -->
+		<p:confirmDialog widgetVar="decision_alert" showEffect="fade"
+			hideEffect="fade" global="true">
+			<h:form>
+				<p:commandButton
+					value="#{language['label.dialog.withdraw.decision.yes']}"
+					type="button" styleClass="ui-confirmdialog-yes"
+					icon="ui-icon-check" style="margin-left: 50px"
+					update="form_confirm" />
+				<p:commandButton
+					value="#{language['label.dialog.withdraw.decision.no']}"
+					type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"
+					style="margin-left: 5px" />
+			</h:form>
+		</p:confirmDialog>
+
+
+		<!-- Confirmação -->
+		<p:dialog id="dlg_withdraw" widgetVar="withdraw_confirm"
+			header="Concluído" showEffect="fade" hideEffect="fade" modal="true">
+			<h:form>
+				<p:outputLabel value="Saque realizado com sucesso!" />
+				<p:separator />
+				<p:panel>
+					<p:outputLabel
+						value="Saldo anterior: #{withdrawBean.withdraw.previousBalance}" />
+				</p:panel>
+			</h:form>
+		</p:dialog>
+
+		<!-- Outros valores -->
+		<p:dialog id="dlg_other_values" widgetVar="withdraw_other_values"
+			header="Outros valores" showEffect="fade" hideEffect="fade"
+			modal="true">
+			<h:form>
+				<h:panelGrid columns="2">
+					<p:outputLabel for="label_other_values" value="Insira um valor: " />
+					<p:inputNumber id="label_other_values" symbol="R$"
+						value="#{withdrawBean.selected.valueToBeWithdrawn}"
+						decimalSeparator="," thousandSeparator="." />
+				</h:panelGrid>
+				<p:separator />
+				<p:commandButton value="Sacar" action="#{withdrawBean.withdraw()}"
+					oncomplete="PF('withdraw_other_values').hide();"
+					style="margin-left: 50px; width: 108px" />
+				<p:commandButton value="Cancelar"
+					onclick="PF('withdraw_other_values').hide();"
+					style="margin-left: 5px" />
+			</h:form>
+		</p:dialog>
+
+
+	</ui:define>
 </ui:composition>
