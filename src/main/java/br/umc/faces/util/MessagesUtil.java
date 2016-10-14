@@ -1,24 +1,31 @@
 package br.umc.faces.util;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
-public final class MessagesUtil {
+/**
+ * Classe utilitária para exibição de mensagens.
+ * @author Junior
+ *
+ */
+@RequestScoped
+public class MessagesUtil {
 	
-	public static void displayErrorMessage(final String summary, final String body) {
-		FacesUtil.getFacesContext().addMessage(null, getFacesMessage(FacesMessage.SEVERITY_ERROR, summary, body));
+	public void displayErrorMessage(final String summary, final String body) {
+		addMessage(FacesMessage.SEVERITY_ERROR, summary, body);
 	}
 	
-	public static void displayWarningMessage(final String summary, final String body) {
-		FacesUtil.getFacesContext().addMessage(null, getFacesMessage(FacesMessage.SEVERITY_WARN, summary, body));
+	public void displayWarningMessage(final String summary, final String body) {
+		addMessage(FacesMessage.SEVERITY_WARN, summary, body);
 	}
 	
-	public static void displayInfoMessage(final String summary, final String body) {
-		FacesUtil.getFacesContext().addMessage(null, getFacesMessage(FacesMessage.SEVERITY_INFO, summary, body));
+	public void displayInfoMessage(final String summary, final String body) {
+		addMessage(FacesMessage.SEVERITY_INFO, summary, body);
 	}
 	
-	private static FacesMessage getFacesMessage(final Severity severity, final String summary, final String body) {
-		return new FacesMessage(severity, summary, body);
+	private void addMessage(final Severity severity, final String summary, final String body) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, summary, body));
 	}
 }

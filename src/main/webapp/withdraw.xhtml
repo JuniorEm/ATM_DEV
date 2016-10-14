@@ -6,10 +6,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
 	<ui:define name="content">
-		<h:form>
+		<h:form id="form_confirm">
 			<div style="width: 940px">
 				<div style="width: 60px">
-
 					<p:dataGrid var="value" value="#{withdrawBean.values}" columns="2"
 						rows="6"
 						style="position:relative; margin-left: 550px; margin-top: -100px; width: 350px">
@@ -44,6 +43,11 @@
 							style="margin-left: 550px; margin-top: -100px; width: 350px; height: 50px"
 							oncomplete="PF('withdraw_other_values').show()" />
 					</div>
+
+					<div style="margin-top: 35px; width: 300px; height: 300px; margin-left: 575px">
+						<p:messages id="message_principal" severity="error"
+							closable="true" showDetail="true" autoUpdate="true" />
+					</div>
 				</div>
 			</div>
 		</h:form>
@@ -56,7 +60,7 @@
 					value="#{language['label.dialog.withdraw.decision.yes']}"
 					type="button" styleClass="ui-confirmdialog-yes"
 					icon="ui-icon-check" style="margin-left: 50px"
-					update="form_confirm" />
+					update=":form_confirm:message_principal" />
 				<p:commandButton
 					value="#{language['label.dialog.withdraw.decision.no']}"
 					type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"
@@ -90,15 +94,18 @@
 						decimalSeparator="," thousandSeparator="." />
 				</h:panelGrid>
 				<p:separator />
+
 				<p:commandButton value="Sacar" action="#{withdrawBean.withdraw()}"
-					oncomplete="PF('withdraw_other_values').hide();"
-					style="margin-left: 50px; width: 108px" />
+					oncomplete="if (args &amp;&amp; !args.validationFailed) PF('withdraw_other_values').hide()"
+					style="margin-left: 50px; width: 108px" update="@form, errors"
+					ignoreAutoUpdate="true" />
 				<p:commandButton value="Cancelar"
-					onclick="PF('withdraw_other_values').hide();"
+					onclick="PF('withdraw_other_values').hide()"
 					style="margin-left: 5px" />
+				<p:messages id="errors" severity="error" showDetail="true"
+					globalOnly="false" />
 			</h:form>
 		</p:dialog>
-
 
 	</ui:define>
 </ui:composition>

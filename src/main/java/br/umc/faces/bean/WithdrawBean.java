@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,16 +16,20 @@ import br.umc.data.dao.AccountDAO;
 import br.umc.data.dao.WithdrawValueDAO;
 import br.umc.data.entity.Account;
 import br.umc.data.entity.WithdrawValue;
+import br.umc.faces.exception.BusinessException;
 import br.umc.faces.model.Withdraw;
-import br.umc.faces.util.FacesUtil;
+import br.umc.faces.util.FacesContextProducer;
+import br.umc.faces.util.MessagesUtil;
 
 @Named
 @ViewScoped
 @SuppressWarnings("serial")
 public class WithdrawBean implements Serializable {
+	@Inject private FacesContext facesContext;
 	@Inject private AccountLoggedBean logged;
 	@Inject private WithdrawValueDAO withdrawDAO;
 	@Inject private AccountDAO accountDAO;
+	@Inject private MessagesUtil messages;
 	private List<WithdrawValue> values;
 	private Withdraw withdraw;
 	private WithdrawValue selected;
@@ -55,15 +60,19 @@ public class WithdrawBean implements Serializable {
 	}
 
 	public void withdraw() {
-		final BigDecimal obtained = withdraw.getValuePostWithdraw(account, selected);
-		account.setBalance(obtained);
-		accountDAO.save(account);
-		
-		showConfirmationDialog();
+		try {
+			final BigDecimal obtained = withdraw.getValuePostWithdraw(account, selected);
+			account.setBalance(obtained);
+			accountDAO.save(account);
+			showConfirmationDialog();
+		} catch(final BusinessException e) {
+			facesContext.validationFailed();
+			messages.displayErrorMessage("Error", e.getMessage());
+		}
 	}
 
 	private void showConfirmationDialog() {
-		final RequestContext requestContext = FacesUtil.getRequestContext();
+		final RequestContext requestContext = RequestContext.getCurrentInstance();
 		requestContext.execute("PF('withdraw_confirm').show();");
 		requestContext.update("dlg_withdraw");
 	}

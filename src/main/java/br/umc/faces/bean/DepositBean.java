@@ -13,7 +13,6 @@ import org.primefaces.context.RequestContext;
 import br.umc.data.dao.AccountDAO;
 import br.umc.data.entity.Account;
 import br.umc.faces.model.Deposit;
-import br.umc.faces.util.FacesUtil;
 
 @Named
 @ViewScoped
@@ -41,7 +40,7 @@ public class DepositBean implements Serializable {
 	}
 
 	private void showConfirmationDialog() {
-		final RequestContext requestContext = FacesUtil.getRequestContext();
+		final RequestContext requestContext = RequestContext.getCurrentInstance();
 		requestContext.execute("PF('deposit_confirm').show();");
 		requestContext.update("dlg_deposit");
 	}

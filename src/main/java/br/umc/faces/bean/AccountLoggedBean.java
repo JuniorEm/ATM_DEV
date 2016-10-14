@@ -1,10 +1,11 @@
 package br.umc.faces.bean;
 
 import static br.umc.faces.page.Page.CONSULT;
+import static br.umc.faces.page.Page.DEPOSIT;
 import static br.umc.faces.page.Page.LOGIN;
 import static br.umc.faces.page.Page.WITHDRAW;
-import static br.umc.faces.page.Page.DEPOSIT;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
@@ -44,20 +45,20 @@ public class AccountLoggedBean implements Serializable {
 		this.logged = account.getAccountNumber();
 	}
 
-	public void logout() {
+	public void logout() throws IOException {
 		FacesUtil.invalidateSession();
 		FacesUtil.redirect(LOGIN.getURL());
 	}
 
-	public void redirectToConsult() {
+	public void redirectToConsult() throws IOException{
 		FacesUtil.redirect(CONSULT.getURL());
 	}
 	
-	public void redirectToWithdraw() {
+	public void redirectToWithdraw() throws IOException {
 		FacesUtil.redirect(WITHDRAW.getURL());
 	}
 	
-	public void redirectToDeposit() {
+	public void redirectToDeposit() throws IOException {
 		FacesUtil.redirect(DEPOSIT.getURL());
 	}
 
