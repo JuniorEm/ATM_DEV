@@ -5,6 +5,11 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>ATM Development</display-name>
 
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>redmond</param-value>
+	</context-param>
+	
 	<welcome-file-list>
 		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
