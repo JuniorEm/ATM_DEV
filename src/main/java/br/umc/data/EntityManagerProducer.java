@@ -16,7 +16,7 @@ public class EntityManagerProducer implements Serializable {
 	@Produces 
 	@ApplicationScoped 
 	public EntityManagerFactory createFactory() {
-		return Persistence.createEntityManagerFactory("atmPU");
+		return Persistence.createEntityManagerFactory("default");
 	}
 	
 	@Produces

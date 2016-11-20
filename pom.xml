@@ -63,9 +63,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.4.1208-jdbc42-atlassian-hosted</version>
+			<version>9.4.1212</version>
 		</dependency>
 
 
@@ -139,12 +139,6 @@
 			<artifactId>deltaspike-data-module-impl</artifactId>
 			<version>${deltaspike.version}</version>
 			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>br.umc</groupId>
-			<artifactId>ATM_DEV_SERVICES</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>
